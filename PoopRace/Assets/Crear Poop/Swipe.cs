@@ -7,8 +7,8 @@ public class Swipe : MonoBehaviour {
 
     public GameObject poop;
 
-    private Vector2 startSwipe;
-    private Vector2 endSwipe;
+    private Vector2 v1;
+    private Vector2 v2;
     private int caso = 0;
 
     // Use this for initialization
@@ -23,13 +23,13 @@ public class Swipe : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0))
         {
-            startSwipe = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-            Debug.Log("start swipe: "+startSwipe);
+            v1 = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+            Debug.Log("start swipe: "+v1);
         }
         if (Input.GetMouseButtonUp(0))
         {
-            endSwipe = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-            Debug.Log("end swipe: " + endSwipe);
+            v2 = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+            Debug.Log("end swipe: " + v2);
             SwipeScreen();
         }
     }
@@ -37,60 +37,59 @@ public class Swipe : MonoBehaviour {
 
     void SwipeScreen()
     {
-        //validacion caso 1 y 2
-        if (startSwipe.y == endSwipe.y || startSwipe.y == endSwipe.y + 0.1 || startSwipe.y == endSwipe.y - 0.1)
+        float diferx = v2.x - v1.x;
+        float difery = v2.y - v1.y;
+        #region convertir dif en positivo
+        if (diferx < 0 )
         {
-            if (startSwipe.x < endSwipe.x)
-            {
-                caso = 1;
+            diferx = diferx * -1;
+        }
+        if (difery < 0)
+        {
+            difery = difery * -1;
+        }
+        Debug.Log("Dif x "+diferx);
+        Debug.Log("Dif y " + difery);
+        #endregion
+        if (difery < .1)
+        {
+            if (v1.x < v2.x) {
+                Debug.Log("caso 1");
             }
-            if (startSwipe.x > endSwipe.x)
+            if (v1.x > v2.x)
             {
-                caso = 2;
-            }
-            else {
-                caso = 0;
+                Debug.Log("caso 2");
             }
         }
-        //validacion caso 3 y 4
-        if (startSwipe.x == endSwipe.x || startSwipe.x == endSwipe.x + 0.1 || startSwipe.x == endSwipe.x - 0.1)
+        if (diferx < .1)
         {
-            if (startSwipe.y < endSwipe.y)
+            if (v1.y < v2.y)
             {
-                caso = 3;
+                Debug.Log("caso 3");
             }
-            if (startSwipe.y > endSwipe.y)
+            if (v1.y > v2.y)
             {
-                caso = 4;
-            }
-            else {
-                caso = 0;
+                Debug.Log("caso 4");
             }
         }
-        //validacion caso 5 y 8
-        if (startSwipe.x < endSwipe.x)
+        if (diferx > .1 && difery > .1)
         {
-            if (startSwipe.y < endSwipe.y)
+            if (v1.x < v2.x && v1.y < v2.y)
             {
-                caso = 5;
+                Debug.Log("caso 5");
             }
-            if (startSwipe.y > endSwipe.y)
+            if (v1.x > v2.x && v1.y > v2.y)
             {
-                caso = 8;
+                Debug.Log("caso 6");
+            }
+            if (v1.x > v2.x && v1.y < v2.y)
+            {
+                Debug.Log("caso 7");
+            }
+            if (v1.x < v2.x && v1.y > v2.y)
+            {
+                Debug.Log("caso 8");
             }
         }
-        //validacion caso 6 y 7
-        if (startSwipe.x > endSwipe.x)
-        {
-            if (startSwipe.y < endSwipe.y)
-            {
-                caso = 7;
-            }
-            if (startSwipe.y > endSwipe.y)
-            {
-                caso = 6;
-            }
-        }
-        Debug.Log("caso = " + caso);
     }
 }
