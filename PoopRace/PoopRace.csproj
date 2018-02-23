@@ -78,7 +78,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Crear Poop\Swipe.cs" />
+    <Compile Include="Assets\crearPoop\GeneratePoop.cs" />
+    <Compile Include="Assets\pooprace\movPop.cs" />
+    <Compile Include="Assets\Swipe.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
