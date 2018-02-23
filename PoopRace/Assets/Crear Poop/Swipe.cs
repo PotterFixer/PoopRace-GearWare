@@ -9,6 +9,7 @@ public class Swipe : MonoBehaviour {
 
     private Vector2 startSwipe;
     private Vector2 endSwipe;
+    private int caso = 0;
 
     // Use this for initialization
     void Start()
@@ -36,11 +37,60 @@ public class Swipe : MonoBehaviour {
 
     void SwipeScreen()
     {
-        poop.transform.localScale += new Vector3(0, 0.05f, 0);
-        Debug.Log(poop.transform.localScale);
-
-        Vector2 swipe = endSwipe - startSwipe;
-
-        
+        //validacion caso 1 y 2
+        if (startSwipe.y == endSwipe.y || startSwipe.y == endSwipe.y + 0.1 || startSwipe.y == endSwipe.y - 0.1)
+        {
+            if (startSwipe.x < endSwipe.x)
+            {
+                caso = 1;
+            }
+            if (startSwipe.x > endSwipe.x)
+            {
+                caso = 2;
+            }
+            else {
+                caso = 0;
+            }
+        }
+        //validacion caso 3 y 4
+        if (startSwipe.x == endSwipe.x || startSwipe.x == endSwipe.x + 0.1 || startSwipe.x == endSwipe.x - 0.1)
+        {
+            if (startSwipe.y < endSwipe.y)
+            {
+                caso = 3;
+            }
+            if (startSwipe.y > endSwipe.y)
+            {
+                caso = 4;
+            }
+            else {
+                caso = 0;
+            }
+        }
+        //validacion caso 5 y 8
+        if (startSwipe.x < endSwipe.x)
+        {
+            if (startSwipe.y < endSwipe.y)
+            {
+                caso = 5;
+            }
+            if (startSwipe.y > endSwipe.y)
+            {
+                caso = 8;
+            }
+        }
+        //validacion caso 6 y 7
+        if (startSwipe.x > endSwipe.x)
+        {
+            if (startSwipe.y < endSwipe.y)
+            {
+                caso = 7;
+            }
+            if (startSwipe.y > endSwipe.y)
+            {
+                caso = 6;
+            }
+        }
+        Debug.Log("caso = " + caso);
     }
 }
