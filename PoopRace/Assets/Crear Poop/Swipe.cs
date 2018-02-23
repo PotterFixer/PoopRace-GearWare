@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class Swipe : MonoBehaviour {
 
-    public GameObject poop;
-
     private Vector2 v1;
     private Vector2 v2;
     private int caso = 0;
@@ -55,10 +53,12 @@ public class Swipe : MonoBehaviour {
         {
             if (v1.x < v2.x) {
                 Debug.Log("caso 1");
+                caso = 1;
             }
             if (v1.x > v2.x)
             {
                 Debug.Log("caso 2");
+                caso = 2;
             }
         }
         if (diferx < .1)
@@ -66,10 +66,13 @@ public class Swipe : MonoBehaviour {
             if (v1.y < v2.y)
             {
                 Debug.Log("caso 3");
+                caso = 3;
             }
             if (v1.y > v2.y)
             {
                 Debug.Log("caso 4");
+                caso = 4;
+
             }
         }
         if (diferx > .1 && difery > .1)
@@ -77,18 +80,22 @@ public class Swipe : MonoBehaviour {
             if (v1.x < v2.x && v1.y < v2.y)
             {
                 Debug.Log("caso 5");
+                caso = 5;
             }
             if (v1.x > v2.x && v1.y > v2.y)
             {
                 Debug.Log("caso 6");
+                caso = 6;
             }
             if (v1.x > v2.x && v1.y < v2.y)
             {
                 Debug.Log("caso 7");
+                caso = 7;
             }
             if (v1.x < v2.x && v1.y > v2.y)
             {
                 Debug.Log("caso 8");
+                caso = 8;
             }
         }
     }
